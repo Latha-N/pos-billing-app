@@ -63,6 +63,61 @@ export const createBill = (data) => {
 	}
 }
 
+//to get selected bill data
+export const startGetBillData = (id) => {
+	return (dispatch) => {
+		axios
+			.get(`https://dct-billing-app.herokuapp.com/api/bills/${id}`, {
+				headers: {
+					Authorization: localStorage.getItem('token'),
+				},
+			})
+			.then((response) => {
+				const data = response.data
+				dispatch(getBillData(data))
+			})
+			.catch((error) => {
+				swal(`${error.message}`, '', 'error')
+			})
+	}
+}
+
+export const getBillData = (data) => {
+	return {
+		type: 'GET_BILL_DATA',
+		payload: data,
+	}
+}
+
+////to delete the selected bill
+
+export const startDeleteBill = (id) => {
+	return (dispatch) => {
+		axios
+			.delete(`https://dct-billing-app.herokuapp.com/api/bills/${id}`, {
+				headers: {
+					Authorization: localStorage.getItem('token'),
+				},
+			})
+			.then((response) => {
+				const data = response.data
+				dispatch(deleteBill(data))
+			})
+			.catch((error) => {
+				swal(`${error.message}`, '', 'error')
+			})
+	}
+}
+
+export const deleteBill = (data) => {
+	return {
+		type: 'DELETE_BILL',
+		payload: data,
+	}
+}
+
+
+
 
 ////to add lineItems into bill
 export const addToCart = (data) =>{
@@ -83,6 +138,14 @@ export const clearBillData = () => {
 export const getCartItems = () => {
 	return {
 		type: 'DISPLAY_CART',
+	}
+}
+
+//to view the customer data for the choosen bill
+export const getbillCustData = (data) => {
+	return {
+		type: 'GET_BILLS_DATA',
+		payload: data,
 	}
 }
 

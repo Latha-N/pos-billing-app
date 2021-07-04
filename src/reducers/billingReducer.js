@@ -142,13 +142,13 @@ const billingReducer = (state = initialState, action) => {
 			return { ...state, addBillData: { ...action.payload } }
 		}
         
-		// //to get all the bills data
-		// case 'GET_BILLS_DATA': {
-		// 	return {
-		// 		...state,
-		// 		addBillData: { ...action.payload },
-		// 	}
-		// }
+		//to get all the bills data
+		case 'GET_BILLS_DATA': {
+			return {
+				...state,
+				addBillData: { ...action.payload },
+			}
+		}
 
 		//to clear the bill data
 		case 'CLEAR_BILL_DATA': {
@@ -174,23 +174,23 @@ const billingReducer = (state = initialState, action) => {
 			}
 		}
 
-		// //to get the data of the selected bill
-		// case 'GET_BILL_DATA': {
-		// 	return {
-		// 		...state,
-		// 		billData: action.payload,
-		// 	}
-		// }
+		//to get the data of the selected bill
+		case 'GET_BILL_DATA': {
+			return {
+				...state,
+				billData: action.payload,
+			}
+		}
 
-		// //to delete the data of the selected bill
-		// case 'DELETE_BILL': {
-		// 	return {
-		// 		...state,
-		// 		bills: state.bills.filter((bill) => {
-		// 			return bill._id !== action.payload._id
-		// 		}),
-		// 	}
-		// }
+		//to delete the data of the selected bill
+		case 'DELETE_BILL': {
+			return {
+				...state,
+				bills: state.bills.filter((bill) => {
+					return bill._id !== action.payload._id
+				}),
+			}
+		}
 
 		//returns the initialstate
 		default: {
